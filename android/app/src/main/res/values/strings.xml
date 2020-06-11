@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_type">employee360.login</string>
+	<string name="app_name">employee360</string>
+	<string name="app_package">employee360</string>
+</resources>

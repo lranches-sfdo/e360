@@ -1,0 +1,48 @@
+{
+  "name": "SalesforceReact",
+  "version": "8.1.0",
+  "summary": "Salesforce Mobile SDK for iOS - SalesforceReact",
+  "homepage": "https://github.com/forcedotcom/SalesforceMobileSDK-ReactNative",
+  "license": {
+    "type": "Salesforce.com Mobile SDK License",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Wolfgang Mathurin": "wmathurin@salesforce.com"
+  },
+  "platforms": {
+    "ios": "12.2"
+  },
+  "source": {
+    "git": "https://github.com/forcedotcom/SalesforceMobileSDK-ReactNative.git",
+    "tag": "v8.1.0",
+    "submodules": false
+  },
+  "requires_arc": true,
+  "default_subspecs": "SalesforceReact",
+  "subspecs": [
+    {
+      "name": "SalesforceReact",
+      "dependencies": {
+        "React": [
+
+        ],
+        "MobileSync": [
+
+        ]
+      },
+      "source_files": "ios/SalesforceReact/**/*.{h,m}",
+      "public_header_files": [
+        "ios/SalesforceReact/SFNetReactBridge.h",
+        "ios/SalesforceReact/SFOauthReactBridge.h",
+        "ios/SalesforceReact/SFSDKReactLogger.h",
+        "ios/SalesforceReact/SFSmartStoreReactBridge.h",
+        "ios/SalesforceReact/SFMobileSyncReactBridge.h",
+        "libs/SalesforceReact/SalesforceReact/SalesforceReact.h",
+        "ios/SalesforceReact/SalesforceReactSDKManager.h"
+      ],
+      "prefix_header_contents": "#import \"SFSDKReactLogger.h\"",
+      "requires_arc": true
+    }
+  ]
+}
