@@ -52,6 +52,7 @@ class AppScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentScore: 0,
       currentSteps: 0,
       steps: null,
       loading: false,
@@ -65,6 +66,7 @@ class AppScreen extends React.Component {
   fetchData = () => {
     net.query("SELECT Id,Score__c,Steps__c FROM Health__c", (response) => {
       this.setState({
+        currentScore: response.records[0].Score__c,
         currentSteps: response.records[0].Steps__c,
       });
     });
@@ -105,25 +107,14 @@ class AppScreen extends React.Component {
         return;
       }
 
-      Alert.alert(
-        "Success",
-        "You've added your steps for today.",
-        [
-          {
-            text: "OK",
-            onPress: () => {
-              this.setState({
-                currentSteps: newSteps,
-                loading: false,
-                steps: null,
-              });
-            },
-          },
-        ],
-        { cancelable: false }
-      );
+      this.setState({
+        currentSteps: newSteps,
+        loading: false,
+        steps: null,
+      });
+
+      Keyboard.dismiss();
     });
-    Keyboard.dismiss();
   };
 
   render() {
@@ -150,6 +141,40 @@ class AppScreen extends React.Component {
               <TouchableOpacity style={styles.button} onPress={this.onPress}>
                 <Text style={{ color: "#fff", fontWeight: "bold" }}>Enter</Text>
               </TouchableOpacity>
+            </View>
+          </View>
+          <View
+            style={{
+              backgroundColor: "#253845",
+              position: "absolute",
+              height: 70,
+              width: "100%",
+              height: "100%",
+              top: "59.2%",
+            }}
+          >
+            <View style={{ paddingTop: 16, alignItems: "center" }}>
+              <Text
+                style={{ fontSize: 28, fontWeight: "bold", color: "white" }}
+              >
+                Total Steps:
+              </Text>
+              <Text style={{ fontSize: 26, color: "white" }}>
+                {this.state.currentSteps}
+              </Text>
+              <Text
+                style={{
+                  paddingTop: 24,
+                  fontSize: 28,
+                  fontWeight: "bold",
+                  color: "white",
+                }}
+              >
+                Score:
+              </Text>
+              <Text style={{ fontSize: 26, color: "white" }}>
+                {this.state.currentScore} / 5
+              </Text>
             </View>
           </View>
         </ImageBackground>
