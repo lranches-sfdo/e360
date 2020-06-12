@@ -107,8 +107,9 @@ class AppScreen extends React.Component {
         return;
       }
 
+      this.fetchData();
+
       this.setState({
-        currentSteps: newSteps,
         loading: false,
         steps: null,
       });
